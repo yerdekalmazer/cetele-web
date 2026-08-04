@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Çetele — Günlük harcama çetelesi</title>
+<meta name="description" content="Tutarı yaz, türüne dokun. Çetele günlük harcamanı saniyeler içinde kaydeder, ay sonunda paranın nereye gittiğini gösterir. Hesap yok, reklam yok; verin cihazında kalır.">
+<link rel="canonical" href="https://cetele.tahayerdekalmazer.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Taha Yerdekalmazer">
+<meta property="og:site_name" content="Taha Yerdekalmazer">
+<meta property="og:title" content="Çetele — Günlük harcama çetelesi">
+<meta property="og:description" content="Tutarı yaz, türüne dokun. Ay sonunda paranın nereye gittiğini ve geçen aya göre neyin değiştiğini görürsün.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cetele.tahayerdekalmazer.com/">
+<meta property="og:image" content="https://cetele.tahayerdekalmazer.com/img/1-bugun.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/img/icon.png" type="image/png">
+<style>
+  /* Uygulamanın kendi dili: sessiz, yoğun, monokrom. Tek tema — uygulama da açık tema. */
+  :root{
+    --page:#F5F5F4; --surface:#FFFFFF; --subtle:#FAFAF9; --muted:#F3F4F6;
+    --line:#E8E8E6; --line-strong:#D4D4D2;
+    --ink:#18181B; --ink-2:#6B7280; --ink-3:#9CA3AF;
+    --action:#1C1C1C; --ok:#16A34A;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font:400 16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sar{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* üst çubuk */
+  .ust{border-bottom:1px solid var(--line);background:var(--surface)}
+  .ust .sar{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .marka{display:flex;align-items:center;gap:9px;text-decoration:none}
+  .marka img{width:26px;height:26px;border-radius:7px;display:block}
+  .marka b{font-size:14.5px;font-weight:600}
+  .ust .geri{font-size:13.5px;color:var(--ink-2);text-decoration:none}
+  .ust .geri:hover{color:var(--ink)}
+
+  /* hero */
+  .hero{background:var(--surface);border-bottom:1px solid var(--line)}
+  .hero .sar{display:grid;grid-template-columns:1fr 260px;gap:56px;
+             align-items:center;padding:64px 24px}
+  h1{font-size:32px;line-height:1.18;font-weight:650;letter-spacing:-.025em;margin:0 0 14px}
+  .giris{font-size:16.5px;color:var(--ink-2);margin:0 0 24px;max-width:42ch}
+  .eylemler{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-block;padding:10px 16px;border-radius:8px;font-size:14px;font-weight:500;
+       text-decoration:none;border:1px solid var(--line);background:var(--surface);
+       transition:background .14s ease-out,border-color .14s ease-out}
+  .btn:hover{background:var(--muted);border-color:var(--line-strong)}
+  .btn.birincil{background:var(--action);color:#fff;border-color:var(--action)}
+  .btn.birincil:hover{background:#000}
+
+  /* telefon görselleri — uzun ekran görüntüleri üstten kırpılıyor */
+  .tel{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);
+       display:block;margin:0}
+  .tel img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+  .hero .tel{height:500px}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  h2{font-size:19px;font-weight:600;letter-spacing:-.015em;margin:0 0 7px}
+  .bolum-giris{font-size:15px;color:var(--ink-2);margin:0 0 28px;max-width:56ch}
+
+  /* ekranlar */
+  .ekranlar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .ekran{margin:0}
+  .ekran .tel{height:340px}
+  .ekran figcaption{font-size:13px;color:var(--ink-2);margin-top:10px;line-height:1.4}
+  .ekran figcaption b{display:block;color:var(--ink);font-weight:600;font-size:13.5px}
+
+  /* özellikler */
+  .ozellikler{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+              border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .oz{background:var(--surface);padding:20px 18px}
+  .oz svg{width:17px;height:17px;stroke:var(--ink-3);stroke-width:1.5;fill:none;
+          stroke-linecap:round;stroke-linejoin:round;margin-bottom:9px;display:block}
+  .oz h3{font-size:14px;font-weight:600;margin:0 0 5px}
+  .oz p{font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.5}
+
+  /* vurgu */
+  .vurgu{background:var(--subtle)}
+  .kiyas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;max-width:620px}
+  .kiyas div{border:1px solid var(--line);border-radius:10px;padding:14px 15px;
+             background:var(--surface);font-size:13.5px;line-height:1.45}
+  .kiyas .et{display:block;font-size:11px;font-weight:500;letter-spacing:.07em;
+             text-transform:uppercase;margin-bottom:6px;
+             font-family:ui-monospace,"SF Mono",Menlo,monospace}
+  .kiyas .yanlis .et{color:var(--ink-3)}
+  .kiyas .yanlis{color:var(--ink-3)}
+  .kiyas .dogru .et{color:var(--ok)}
+
+  /* gizlilik */
+  .gizlilik ul{margin:0;padding-left:19px;font-size:15px;color:var(--ink-2)}
+  .gizlilik li{margin-bottom:7px}
+  .gizlilik li:last-child{margin-bottom:0}
+  .iki{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+
+  footer{background:var(--surface);border-top:1px solid var(--line);padding:24px 0}
+  footer .sar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+              justify-content:space-between;font-size:13.5px;color:var(--ink-2)}
+  footer a{color:var(--ink-2);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+  .baglar{display:flex;gap:18px;flex-wrap:wrap}
+
+  @media (max-width:860px){
+    .hero .sar{grid-template-columns:1fr;gap:36px;padding:44px 24px}
+    .hero .tel{max-width:260px;height:420px}
+    .ekranlar{grid-template-columns:repeat(2,1fr)}
+    .ozellikler{grid-template-columns:1fr}
+    .iki,.kiyas{grid-template-columns:1fr;gap:24px}
+    h1{font-size:27px}
+    section{padding:42px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="sar">
+    <a class="marka" href="/">
+      <img src="/img/icon.png" alt="" width="26" height="26">
+      <b>Çetele</b>
+    </a>
+    <a class="geri" href="https://www.tahayerdekalmazer.com">Taha Yerdekalmazer</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="sar">
+    <div>
+      <h1>Günlük harcamanı<br>on saniyede kaydet.</h1>
+      <p class="giris">
+        Tutarı yaz, türüne dokun, bitti. Ay sonunda paranın nereye gittiğini ve
+        geçen aya göre neyin değiştiğini tek ekranda görürsün.
+      </p>
+      <div class="eylemler">
+        <a class="btn birincil" href="mailto:tyerdekalmazer01@gmail.com?subject=Çetele%20çıkınca%20haber%20ver">App Store'da yakında</a>
+        <a class="btn" href="/gizlilik">Gizlilik politikası</a>
+      </div>
+    </div>
+    <figure class="tel">
+      <img src="/img/1-bugun.png" alt="Çetele giriş ekranı" width="900" height="1955">
+    </figure>
+  </div>
+</div>
+
+<section>
+  <div class="sar">
+    <h2>Dört ekran, o kadar</h2>
+    <p class="bolum-giris">
+      İçinde kaybolmanı gerektiren bir şey yok. Girersin, kaydedersin, çıkarsın.
+    </p>
+    <div class="ekranlar">
+      <figure class="ekran">
+        <div class="tel"><img src="/img/1-bugun.png" alt="Bugün ekranı" width="900" height="1955" loading="lazy"></div>
+        <figcaption><b>Bugün</b>Tutarı yaz, türe dokun</figcaption>
+      </figure>
+      <figure class="ekran">
+        <div class="tel"><img src="/img/2-ay.png" alt="Ay özeti ekranı" width="900" height="1955" loading="lazy"></div>
+        <figcaption><b>Ay</b>Para nereye gitti</figcaption>
+      </figure>
+      <figure class="ekran">
+        <div class="tel"><img src="/img/3-rapor.png" alt="Ay sonu raporu" width="900" height="1955" loading="lazy"></div>
+        <figcaption><b>Rapor</b>Neye dikkat etmeli</figcaption>
+      </figure>
+      <figure class="ekran">
+        <div class="tel"><img src="/img/4-ayarlar.png" alt="Ayarlar ekranı" width="900" height="1955" loading="lazy"></div>
+        <figcaption><b>Ayarlar</b>Bütçe ve hatırlatma</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sar">
+    <h2>Ne yapar</h2>
+    <p class="bolum-giris">Az şey yapar, onu iyi yapmaya çalışır.</p>
+    <div class="ozellikler">
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        <h3>Tek dokunuşta kayıt</h3>
+        <p>Kategoriye bastığın anda kaydedilir. Yanlış girdiysen tek dokunuşla geri alırsın.</p>
+      </div>
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Akşam hatırlatır</h3>
+        <p>Seçtiğin saatte sorar — ama yalnızca o gün hiç kayıt girmediysen.</p>
+      </div>
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        <h3>Ay sonu raporu</h3>
+        <p>Günlük ortalama, ay sonu tahmini, bütçe durumu, şişen kategoriler, en büyük beş harcama.</p>
+      </div>
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/></svg>
+        <h3>Hesap yok</h3>
+        <p>Kayıt olmadan kullanırsın. Veri cihazından çıkmaz, sunucuya gönderilmez.</p>
+      </div>
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        <h3>Verini alırsın</h3>
+        <p>Kayıtlarını istediğin an CSV olarak dışa aktarır, istediğin an hepsini silersin.</p>
+      </div>
+      <div class="oz">
+        <svg viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        <h3>Reklamsız</h3>
+        <p>Abonelik yok, reklam yok, takip yok. Kullanırken kimseye bir şey satmıyoruz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vurgu">
+  <div class="sar">
+    <h2>Dürüst karşılaştırma</h2>
+    <p class="bolum-giris">
+      Ay bitmeden “geçen ayın altındasın” demek kolay ama yanıltıcı — ayın üçünde her zaman
+      altında çıkarsın. Çetele geçen ayı da aynı gün sayısına kırpar; gördüğün oran gerçek orandır.
+    </p>
+    <div class="kiyas">
+      <div class="yanlis">
+        <span class="et">yaygın olan</span>
+        Bu ayın 3 günü, geçen ayın 30 günüyle karşılaştırılır → “iyi gidiyorsun”
+      </div>
+      <div class="dogru">
+        <span class="et">Çetele</span>
+        Bu ayın 3 günü, geçen ayın ilk 3 günüyle karşılaştırılır → gerçek durum
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gizlilik">
+  <div class="sar">
+    <div class="iki">
+      <div>
+        <h2>Verin sende kalır</h2>
+        <p class="bolum-giris" style="margin-bottom:0">
+          Çetele hiçbir veri toplamaz. Bu bir vaat değil, uygulamanın yapısı:
+          internet bağlantısı hiç kullanılmıyor.
+        </p>
+        <p style="margin-top:18px">
+          <a class="btn" href="/gizlilik">Gizlilik politikasının tamamı</a>
+        </p>
+      </div>
+      <ul>
+        <li>Hesap açman, e-posta vermen gerekmez.</li>
+        <li>Kayıtların yalnızca cihazının kendi deposunda durur.</li>
+        <li>Analitik, çökme raporlama veya reklam SDK'sı yoktur.</li>
+        <li>Uygulamayı silersen veriler de cihazdan tamamen kalkar.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="sar">
+    <span>Çetele · Taha Yerdekalmazer · 2026</span>
+    <span class="baglar">
+      <a href="/gizlilik">Gizlilik</a>
+      <a href="mailto:tyerdekalmazer01@gmail.com">Destek</a>
+      <a href="https://www.tahayerdekalmazer.com">Portföy</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

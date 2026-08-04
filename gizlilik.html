@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Çetele — Gizlilik Politikası</title>
+<style>
+  :root{
+    --bg-page:#F5F5F4; --bg-surface:#FFFFFF; --border:#E8E8E6;
+    --text-primary:#18181B; --text-secondary:#6B7280; --text-tertiary:#9CA3AF;
+    --link:#2563EB;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg-page);color:var(--text-primary);
+    font:400 16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:32px 16px;
+  }
+  main{
+    max-width:680px;margin:0 auto;background:var(--bg-surface);
+    border:1px solid var(--border);border-radius:16px;padding:40px 32px;
+  }
+  .marka{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+  .marka .im{
+    width:40px;height:40px;border-radius:10px;background:#1C1C1C;flex:none;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .marka .im svg{width:22px;height:22px;stroke:#fff;stroke-width:1.6;
+                 stroke-linecap:round;fill:none}
+  .marka b{font-size:17px;font-weight:600}
+  .marka span{display:block;font-size:13px;color:var(--text-secondary);font-weight:400}
+  h1{font-size:20px;font-weight:600;margin:0 0 8px;letter-spacing:-.01em}
+  .tarih{font-size:13px;color:var(--text-tertiary);margin:0 0 28px}
+  h2{font-size:15px;font-weight:600;margin:28px 0 8px}
+  p{margin:0 0 12px;font-size:15px}
+  ul{margin:0 0 12px;padding-left:20px;font-size:15px}
+  li{margin-bottom:6px}
+  .ozet{
+    border:1px solid var(--border);border-radius:12px;padding:16px 18px;
+    margin:0 0 8px;font-size:15px;
+  }
+  .ozet b{font-weight:600}
+  a{color:var(--link)}
+  footer{
+    margin-top:32px;padding-top:20px;border-top:1px solid var(--border);
+    font-size:13px;color:var(--text-secondary);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg-page:#09090B; --bg-surface:#18181B; --border:#27272A;
+      --text-primary:#FAFAFA; --text-secondary:#A1A1AA; --text-tertiary:#71717A;
+      --link:#60A5FA;
+    }
+    .marka .im{background:#FAFAFA}
+    .marka .im svg{stroke:#18181B}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="marka">
+    <div class="im" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 6v12"/><path d="M10.6 6v12"/><path d="M14.2 6v12"/><path d="M17.8 6v12"/>
+        <path d="M5.4 16.4 19.4 8.6"/>
+      </svg>
+    </div>
+    <div>
+      <b>Çetele</b>
+      <span>Günlük harcama çetelesi</span>
+    </div>
+  </div>
+
+  <h1>Gizlilik Politikası</h1>
+  <p class="tarih">Son güncelleme: 3 Ağustos 2026</p>
+
+  <div class="ozet">
+    <b>Kısaca:</b> Çetele hiçbir veri toplamaz. Girdiğiniz harcamalar yalnızca
+    kendi cihazınızda saklanır, hiçbir sunucuya gönderilmez. Hesap açmanız
+    gerekmez ve uygulamanın internet bağlantısı yoktur.
+  </div>
+
+  <h2>Toplanan veriler</h2>
+  <p>
+    Hiçbiri. Uygulama sizden ad, e-posta, telefon numarası, konum ya da başka
+    bir kişisel bilgi istemez. Reklam kimliği kullanmaz, analitik veya çökme
+    raporlama araçları içermez, üçüncü taraf SDK barındırmaz.
+  </p>
+
+  <h2>Girdiğiniz bilgiler nerede duruyor</h2>
+  <p>
+    Kaydettiğiniz tutarlar, kategoriler, notlar ve bütçe ayarınız yalnızca
+    cihazınızın kendi deposunda tutulur. Bu veriler:
+  </p>
+  <ul>
+    <li>Cihazdan dışarı çıkmaz; geliştirici dahil kimse erişemez.</li>
+    <li>Yalnızca sizin başlattığınız bir dışa aktarma (CSV) ile paylaşılır —
+        nereye göndereceğinize siz karar verirsiniz.</li>
+    <li>Uygulamayı silmeniz durumunda cihazdan tamamen kalkar.</li>
+  </ul>
+  <p>
+    Ayarlar ekranındaki “Tüm kayıtları sil” seçeneğiyle verilerinizi istediğiniz
+    an kalıcı olarak silebilirsiniz.
+  </p>
+
+  <h2>Bildirimler</h2>
+  <p>
+    Akşam hatırlatması isteğe bağlıdır ve yalnızca siz Ayarlar'dan açtığınızda
+    izin istenir. Bildirimler tamamen cihazınızda planlanır; içeriğinde harcama
+    tutarı geçmez ve dışarıya hiçbir bilgi gitmez. Hatırlatmayı istediğiniz an
+    kapatabilirsiniz.
+  </p>
+
+  <h2>Çocukların gizliliği</h2>
+  <p>
+    Uygulama hiç kimseden veri toplamadığı için çocuklardan da veri toplamaz.
+  </p>
+
+  <h2>Değişiklikler</h2>
+  <p>
+    Bu politika değişirse bu sayfa güncellenir ve yukarıdaki tarih değiştirilir.
+    Veri toplamaya başlanması gibi esaslı bir değişiklik olursa uygulama
+    güncellemesinde ayrıca belirtilir.
+  </p>
+
+  <h2>İletişim</h2>
+  <p>
+    Soru veya talepleriniz için:
+    <a href="mailto:tyerdekalmazer01@gmail.com">tyerdekalmazer01@gmail.com</a>
+  </p>
+
+  <footer>
+    Çetele · Taha Yerdekalmazer · 2026
+  </footer>
+
+</main>
+</body>
+</html>
